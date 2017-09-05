@@ -21,4 +21,8 @@ export class AppComponent {
       .fetchData()
       .subscribe(() => this.nodes.push({}));
   }
+
+  removeNode(index: number): void {
+    this.nodes.splice(index, 1);
+  }
 }
