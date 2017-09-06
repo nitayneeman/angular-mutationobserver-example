@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 
 @Component({
@@ -6,11 +6,21 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public nodes: any[];
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService,
+              private elementRef: ElementRef) {
     this.nodes = [{}, {}, {}];
+  }
+
+  ngOnInit(): void {
+    const list = this.elementRef.nativeElement.querySelector('ul');
+    const changes = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => console.log(mutation));
+    });
+
+    changes.observe(list, { childList: true });
   }
 
   /**
