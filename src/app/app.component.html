@@ -1,3 +1,4 @@
+<h1>angular-mutationobserver-example</h1>
 <ul (domChange)="onDomChange($event)">
   <li *ngFor="let node of nodes">
     Node {{ node.id }} <button (click)="removeNode(node.id)" >Remove</button>
