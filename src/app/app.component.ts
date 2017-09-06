@@ -15,12 +15,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const list = this.elementRef.nativeElement.querySelector('ul');
-    const changes = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => console.log(mutation));
-    });
+    const listElement = this.elementRef.nativeElement.querySelector('ul');
+    const changes = new MutationObserver((mutations: MutationRecord[]) => {
+        mutations
+          .forEach((mutation: MutationRecord) => console.log(mutation));
+      }
+    );
 
-    changes.observe(list, { childList: true });
+    changes.observe(listElement, { childList: true });
   }
 
   /**
