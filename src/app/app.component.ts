@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
 @Component({
@@ -6,23 +6,11 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public nodes: any[];
 
-  constructor(private appService: AppService,
-              private elementRef: ElementRef) {
-    this.nodes = [{}, {}, {}];
-  }
-
-  ngOnInit(): void {
-    const listElement = this.elementRef.nativeElement.querySelector('ul');
-    const changes = new MutationObserver((mutations: MutationRecord[]) => {
-        mutations
-          .forEach((mutation: MutationRecord) => console.log(mutation));
-      }
-    );
-
-    changes.observe(listElement, { childList: true });
+  constructor(private appService: AppService) {
+    this.nodes = [{ id: 0 }, { id: 1 }, { id: 2 }];
   }
 
   /**
@@ -31,10 +19,18 @@ export class AppComponent implements OnInit {
   addNode(): void {
     this.appService
       .fetchData()
-      .subscribe(() => this.nodes.push({}));
+      .subscribe(() => {
+        const lastNode = this.nodes[this.nodes.length - 1];
+
+        this.nodes.push({ id: lastNode.id + 1 });
+      });
   }
 
-  removeNode(index: number): void {
-    this.nodes.splice(index, 1);
+  removeNode(id: number): void {
+    this.nodes.splice(id, 1);
+  }
+
+  onDomChange($event: Event) {
+    console.log($event);
   }
 }

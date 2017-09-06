@@ -1,6 +1,6 @@
-<ul >
-  <li *ngFor="let node of nodes; let i = index ">
-    Node {{ i }} <button (click)="removeNode(i)">Remove</button>
+<ul (domChange)="onDomChange($event)">
+  <li *ngFor="let node of nodes">
+    Node {{ node.id }} <button (click)="removeNode(node.id)" >Remove</button>
   </li>
 </ul>
 <button (click)="addNode()">Add node</button>
