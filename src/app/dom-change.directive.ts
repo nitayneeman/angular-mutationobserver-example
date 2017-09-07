@@ -18,8 +18,9 @@ export class DomChangeDirective implements OnDestroy {
     );
 
     this.changes.observe(element, {
+      attributes: true,
       childList: true,
-      attributes: true
+      characterData: true
     });
   }
 

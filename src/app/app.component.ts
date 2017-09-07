@@ -23,7 +23,7 @@ export class AppComponent {
     this.todos.splice(index, 1);
   }
 
-  onDomChange($event: Event) {
+  onDomChange($event: Event): void {
     console.log($event);
   }
 }
