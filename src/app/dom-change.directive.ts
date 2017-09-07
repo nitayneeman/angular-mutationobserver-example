@@ -17,7 +17,10 @@ export class DomChangeDirective implements OnDestroy {
       }
     );
 
-    this.changes.observe(element, { childList: true });
+    this.changes.observe(element, {
+      childList: true,
+      attributes: true
+    });
   }
 
   ngOnDestroy(): void {
