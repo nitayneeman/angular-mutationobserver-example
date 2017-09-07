@@ -1,7 +1,7 @@
 <h1>angular-mutationobserver-example</h1>
 <ul (domChange)="onDomChange($event)">
-  <li *ngFor="let node of nodes">
-    Node {{ node.id }} <button (click)="removeNode(node.id)" >Remove</button>
+  <li *ngFor="let todo of todos">
+    Todo {{ todo.id }} <button (click)="removeTodo(todo.id)" >Remove</button>
   </li>
 </ul>
-<button (click)="addNode()">Add node</button>
+<button (click)="addTodo()">Add Todo</button>

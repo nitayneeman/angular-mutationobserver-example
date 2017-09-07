@@ -7,27 +7,27 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public nodes: any[];
+  public todos: any[];
 
   constructor(private appService: AppService) {
-    this.nodes = [{ id: 0 }, { id: 1 }, { id: 2 }];
+    this.todos = [{ id: 0 }, { id: 1 }, { id: 2 }];
   }
 
   /**
    * Function that invokes an async action
    */
-  addNode(): void {
+  addTodo(): void {
     this.appService
       .fetchData()
       .subscribe(() => {
-        const lastNode = this.nodes[this.nodes.length - 1];
+        const lastTodo = this.todos[this.todos.length - 1];
 
-        this.nodes.push({ id: lastNode.id + 1 });
+        this.todos.push({ id: lastTodo.id + 1 });
       });
   }
 
-  removeNode(id: number): void {
-    this.nodes.splice(id, 1);
+  removeTodo(id: number): void {
+    this.todos.splice(id, 1);
   }
 
   onDomChange($event: Event) {
