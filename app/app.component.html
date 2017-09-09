@@ -1,4 +1,4 @@
-<h1>angular-mutationobserver-example</h1>
+<h1>Todo List</h1>
 <ul (domChange)="onDomChange($event)">
   <li *ngFor="let todo of todos; let i = index">
     {{ todo }} <button (click)="removeTodo(i)">Remove</button>
